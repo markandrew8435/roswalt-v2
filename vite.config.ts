@@ -14,6 +14,7 @@ export default defineConfig({
   },
   vite: {
     server: {
+      allowedHosts: ["rylaroswalt.com"],
       proxy: {
         "/__l5e": {
           target: "https://ryla-ambiance.lovable.app",
