@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 
 const STORAGE_KEY = "ryla_lead_v1";
-const POPUP_INTERVAL_MS = 15000;
+const POPUP_INTERVAL_MS = 300000; // 5 minutes
 
 type Mode = "brochure" | "popup";
 
@@ -12,6 +12,14 @@ export function LeadGate() {
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
   const pendingHref = useRef<string | null>(null);
+
+  // Open popup immediately on load if lead is not yet captured
+  useEffect(() => {
+    if (typeof window !== "undefined" && !localStorage.getItem(STORAGE_KEY)) {
+      setMode("popup");
+      setOpen(true);
+    }
+  }, []);
 
   // Intercept brochure clicks site-wide
   useEffect(() => {
@@ -34,7 +42,7 @@ export function LeadGate() {
     return () => document.removeEventListener("click", onClick, true);
   }, []);
 
-  // Auto-popup every 15s until lead is captured
+  // Auto-popup every 5 mins until lead is captured
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (localStorage.getItem(STORAGE_KEY)) return;
@@ -61,7 +69,9 @@ export function LeadGate() {
     };
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(lead));
-    } catch {}
+    } catch {
+      // ignore storage error if quota full or private mode
+    }
     setSubmitting(false);
     setDone(true);
 
@@ -131,7 +141,11 @@ export function LeadGate() {
               disabled={submitting}
               className="btn-gold mt-2 w-full disabled:opacity-60"
             >
-              {submitting ? "Submitting…" : mode === "brochure" ? "Download Brochure" : "Request Details"}
+              {submitting
+                ? "Submitting…"
+                : mode === "brochure"
+                  ? "Download Brochure"
+                  : "Request Details"}
             </button>
             <p className="text-[11px] text-foreground/50">
               By submitting, you agree to be contacted about Roswalt Ryla. MahaRERA PR1180002600645.
