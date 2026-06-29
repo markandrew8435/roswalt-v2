@@ -509,9 +509,15 @@ export function SectionHeader({
 /* ---------- ABOUT ---------- */
 
 export function About() {
-  const blocks = [
+  const blocks: {
+    img?: string;
+    video?: string;
+    eyebrow: string;
+    title: React.ReactNode;
+    body: string;
+  }[] = [
     {
-      img: interiorLivingAsset.url,
+      video: "/low-density.mp4",
       eyebrow: "Boutique by Intent",
       title: (
         <>
@@ -522,7 +528,7 @@ export function About() {
       body: "Ryla is intentionally limited — a small collection of residences shaped to preserve privacy, scale and a sense of authorship. The building does not perform. It withdraws, considered and quiet, into the rhythm of Bandra West.",
     },
     {
-      img: interiorAsset.url,
+      video: "/UNESCO-recognised-hand.mp4",
       eyebrow: "Architecture of Restraint",
       title: (
         <>
@@ -532,7 +538,7 @@ export function About() {
       body: "Under the direction of Ar. Shantanoo V. Rane, every proportion has been resolved with the discipline of couture — clean planes, honest materials, and a restraint that ages with grace rather than fashion.",
     },
     {
-      img: amenitySkyAsset.url,
+      video: "/compounds-in-value.mp4",
       eyebrow: "A Generational Asset",
       title: (
         <>
@@ -562,12 +568,23 @@ export function About() {
             className={`grid items-center gap-16 lg:grid-cols-2 lg:gap-24 ${i % 2 ? "lg:[&>div:first-child]:order-2" : ""}`}
           >
             <div className="relative">
-              <img
-                src={b.img}
-                alt={b.eyebrow}
-                loading="lazy"
-                className="aspect-[4/5] w-full object-cover"
-              />
+              {b.video ? (
+                <video
+                  src={b.video}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="aspect-[4/5] w-full object-cover"
+                />
+              ) : (
+                <img
+                  src={b.img}
+                  alt={b.eyebrow}
+                  loading="lazy"
+                  className="aspect-[4/5] w-full object-cover"
+                />
+              )}
               <div className="absolute -bottom-5 -right-5 hidden border border-gold/40 bg-background px-6 py-4 md:block">
                 <div className="eyebrow text-[10px]">{b.eyebrow}</div>
               </div>
