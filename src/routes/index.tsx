@@ -2,22 +2,22 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState, useCallback } from "react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { submitEnquiry } from "@/lib/submit-enquiry";
-import exteriorAsset from "@/assets/exterior.jpg.asset.json";
-import interiorAsset from "@/assets/interior.jpg.asset.json";
-import interiorLivingAsset from "@/assets/interior-living.jpg.asset.json";
-import heroTowerAsset from "@/assets/hero-tower.jpg.asset.json";
-import amenityZenAsset from "@/assets/amenity-zen.jpg.asset.json";
-import amenitySkyAsset from "@/assets/amenity-sky.jpg.asset.json";
-import yogaAsset from "@/assets/yoga.jpg.asset.json";
-import juicebarAsset from "@/assets/juicebar.jpg.asset.json";
-import gymAsset from "@/assets/gym.jpg.asset.json";
-import loungeAsset from "@/assets/lounge.jpg.asset.json";
-import partyAsset from "@/assets/party.jpg.asset.json";
-import kidsAsset from "@/assets/kids.jpg.asset.json";
-import brochureAsset from "@/assets/brochure.pdf.asset.json";
-import floorplan1068Asset from "@/assets/floorplan-1068.jpg.asset.json";
-import floorplan1245Asset from "@/assets/floorplan-1245.jpg.asset.json";
-import floorplanTypicalAsset from "@/assets/floorplan-typical.jpg.asset.json";
+import Url from "@/assets/";
+import Url from "@/assets/";
+import Url from "@/assets/";
+import heroTowerUrl from "@/assets/hero-tower.jpg";
+import Url from "@/assets/";
+import Url from "@/assets/";
+import Url from "@/assets/";
+import Url from "@/assets/";
+import Url from "@/assets/";
+import Url from "@/assets/";
+import Url from "@/assets/";
+import Url from "@/assets/";
+import Url from "@/assets/";
+import Url from "@/assets/";
+import Url from "@/assets/";
+import Url from "@/assets/";
 
 const PHONE = "+918879396591";
 const PHONE_DISPLAY = "+91 88793 96591";
@@ -121,7 +121,7 @@ const ldJson = {
       name: "Roswalt Ryla",
       description: META_DESC,
       brand: { "@type": "Organization", name: "Roswalt Realty" },
-      image: [exteriorAsset.url, heroTowerAsset.url, interiorLivingAsset.url],
+      image: [Url, Url, Url],
       address: {
         "@type": "PostalAddress",
         addressLocality: "Bandra West",
@@ -190,16 +190,16 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: META_TITLE },
       { property: "og:description", content: META_DESC },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: heroTowerAsset.url },
+      { property: "og:image", content: Url },
       { property: "og:url", content: SITE_URL },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: META_TITLE },
       { name: "twitter:description", content: META_DESC },
-      { name: "twitter:image", content: heroTowerAsset.url },
+      { name: "twitter:image", content: Url },
     ],
     links: [
       { rel: "canonical", href: SITE_URL },
-      { rel: "preload", as: "image", href: heroTowerAsset.url, fetchpriority: "high" } as never,
+      { rel: "preload", as: "image", href: Url, fetchpriority: "high" } as never,
     ],
     scripts: [{ type: "application/ld+json", children: JSON.stringify(ldJson) }],
   }),
@@ -365,7 +365,7 @@ export function Nav() {
             </Link>
           ))}
           <a
-            href={brochureAsset.url}
+            href={Url}
             data-brochure
             target="_blank"
             rel="noopener"
@@ -392,7 +392,7 @@ export function Hero() {
   return (
     <section className="relative h-[100svh] min-h-[720px] w-full overflow-hidden">
       <img
-        src={heroTowerAsset.url}
+        src={heroTowerUrl}
         alt="Roswalt Ryla — boutique luxury tower exterior in Bandra West, Mumbai"
         className="absolute inset-0 size-full object-cover animate-kenburns will-change-transform"
         style={{ transform: `translate3d(0, ${offset}px, 0) scale(1.05)` }}
@@ -438,7 +438,7 @@ export function Hero() {
               Book Private Site Visit
             </a>
             <a
-              href={brochureAsset.url}
+              href={Url}
               data-brochure
               target="_blank"
               rel="noopener"
@@ -718,8 +718,8 @@ type Home = {
 };
 
 const FLOOR_PLAN_SRC: Record<"I" | "II", string> = {
-  I: floorplan1068Asset.url,
-  II: floorplan1245Asset.url,
+  I: Url,
+  II: Url,
 };
 
 function FloorPlanImage({
@@ -882,7 +882,7 @@ export function Residences() {
                     Request Detailed Layout
                   </button>
                   <a
-                    href={brochureAsset.url}
+                    href={Url}
                     data-brochure
                     download
                     target="_blank"
@@ -913,7 +913,7 @@ export function Residences() {
                   </DialogTitle>
                 </div>
                 <a
-                  href={brochureAsset.url}
+                  href={Url}
                   data-brochure
                   download
                   target="_blank"
@@ -954,7 +954,7 @@ export function Residences() {
                     one business day.
                   </p>
                   <a
-                    href={brochureAsset.url}
+                    href={Url}
                     data-brochure
                     download
                     target="_blank"
@@ -1015,17 +1015,17 @@ export function Amenities() {
       cat: "Wellness",
       items: [
         {
-          img: amenityZenAsset.url,
+          img: Url,
           title: "Zen Garden",
           desc: "A composed pause in the day — meditative, quiet, distinctly private.",
         },
         {
-          img: yogaAsset.url,
+          img: Url,
           title: "Sky Yoga Deck",
           desc: "A space above the city, thoughtfully composed for you.",
         },
         {
-          img: gymAsset.url,
+          img: Url,
           title: "Fitness Centre",
           desc: "A disciplined pursuit, carried with precision and intent.",
         },
@@ -1035,22 +1035,22 @@ export function Amenities() {
       cat: "Lifestyle",
       items: [
         {
-          img: loungeAsset.url,
+          img: Url,
           title: "Sky Lounge",
           desc: "An elevated outlook, framed with quiet authority.",
         },
         {
-          img: partyAsset.url,
+          img: Url,
           title: "Party Deck & Sky BBQ",
           desc: "An evening shaped with rhythm, presence and allure.",
         },
         {
-          img: amenitySkyAsset.url,
+          img: Url,
           title: "Sky BBQ Deck",
           desc: "A rooftop ritual under the city sky — gathering, but never crowded.",
         },
         {
-          img: juicebarAsset.url,
+          img: Url,
           title: "Juice Bar",
           desc: "A refined ritual of freshness and conscious indulgence.",
         },
@@ -1060,17 +1060,17 @@ export function Amenities() {
       cat: "Family",
       items: [
         {
-          img: kidsAsset.url,
+          img: Url,
           title: "Kids Play Area",
           desc: "A vibrant space, alive with movement and imagination.",
         },
         {
-          img: loungeAsset.url,
+          img: Url,
           title: "Indoor Games",
           desc: "A measured corner of the building, set aside for play.",
         },
         {
-          img: amenityZenAsset.url,
+          img: Url,
           title: "Senior Citizen Area",
           desc: "A serene retreat for unhurried mornings and shared company.",
         },
@@ -1266,20 +1266,20 @@ export function Gallery() {
   type Cat = (typeof cats)[number];
   const imgs: { src: string; alt: string; cat: Exclude<Cat, "All">; span?: string }[] = [
     {
-      src: heroTowerAsset.url,
+      src: Url,
       alt: "Roswalt Ryla tower exterior at twilight",
       cat: "Exterior",
       span: "lg:col-span-2 lg:row-span-2",
     },
-    { src: exteriorAsset.url, alt: "Building facade detail", cat: "Exterior" },
-    { src: interiorLivingAsset.url, alt: "Sea-facing living room interior", cat: "Interiors" },
-    { src: interiorAsset.url, alt: "Refined dining area inside Ryla", cat: "Interiors" },
-    { src: loungeAsset.url, alt: "Sky lounge ledge at sunset", cat: "Amenities" },
-    { src: partyAsset.url, alt: "Rooftop party deck overlooking the skyline", cat: "Amenities" },
-    { src: yogaAsset.url, alt: "Sky yoga deck at dusk", cat: "Amenities" },
-    { src: amenityZenAsset.url, alt: "Zen garden contemplative area", cat: "Amenities" },
-    { src: amenitySkyAsset.url, alt: "Sky deck overlooking Bandra West", cat: "Location" },
-    { src: kidsAsset.url, alt: "Kids play area", cat: "Amenities" },
+    { src: Url, alt: "Building facade detail", cat: "Exterior" },
+    { src: Url, alt: "Sea-facing living room interior", cat: "Interiors" },
+    { src: Url, alt: "Refined dining area inside Ryla", cat: "Interiors" },
+    { src: Url, alt: "Sky lounge ledge at sunset", cat: "Amenities" },
+    { src: Url, alt: "Rooftop party deck overlooking the skyline", cat: "Amenities" },
+    { src: Url, alt: "Sky yoga deck at dusk", cat: "Amenities" },
+    { src: Url, alt: "Zen garden contemplative area", cat: "Amenities" },
+    { src: Url, alt: "Sky deck overlooking Bandra West", cat: "Location" },
+    { src: Url, alt: "Kids play area", cat: "Amenities" },
   ];
   const [active, setActive] = useState<Cat>("All");
   const visible = imgs.filter((i) => active === "All" || i.cat === active);
@@ -1478,7 +1478,7 @@ export function Price() {
             Book Consultation
           </a>
           <a
-            href={brochureAsset.url}
+            href={Url}
             data-brochure
             target="_blank"
             rel="noopener"
@@ -1634,7 +1634,7 @@ export function Contact() {
                 private viewing.
               </p>
               <a
-                href={brochureAsset.url}
+                href={Url}
                 data-brochure
                 target="_blank"
                 rel="noopener"
@@ -1823,7 +1823,7 @@ export function Footer() {
             </li>
             <li>
               <a
-                href={brochureAsset.url}
+                href={Url}
                 data-brochure
                 target="_blank"
                 rel="noopener"
