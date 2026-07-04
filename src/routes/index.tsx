@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState, useCallback } from "react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { submitEnquiry } from "@/lib/submit-enquiry";
 import exteriorAsset from "@/assets/exterior.jpg.asset.json";
 import interiorAsset from "@/assets/interior.jpg.asset.json";
 import interiorLivingAsset from "@/assets/interior-living.jpg.asset.json";
@@ -778,8 +779,27 @@ export function Residences() {
   const [request, setRequest] = useState<null | (Home & { variant: "I" | "II" })>(null);
   const [sent, setSent] = useState(false);
 
-  const onRequestSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onRequestSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const fd = new FormData(e.currentTarget);
+    const name = String(fd.get("name") || "");
+    const phone = String(fd.get("phone") || "");
+    const email = String(fd.get("email") || "");
+    try {
+      await submitEnquiry({
+        data: {
+          type: "layout_request",
+          name,
+          phone,
+          email,
+          layout_name: request?.name,
+          layout_type: request?.type,
+          layout_area: request?.area,
+        },
+      });
+    } catch (err) {
+      console.error("Failed to submit layout request to D1:", err);
+    }
     setSent(true);
   };
 
@@ -1510,8 +1530,32 @@ export function FAQ() {
 
 export function Contact() {
   const [sent, setSent] = useState(false);
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const fd = new FormData(e.currentTarget);
+    const name = String(fd.get("name") || "");
+    const phone = String(fd.get("phone") || "");
+    const email = String(fd.get("email") || "");
+    const budget = String(fd.get("budget") || "");
+    const buyer = String(fd.get("buyer") || "");
+    const visit = String(fd.get("visit") || "");
+    const message = String(fd.get("message") || "");
+    try {
+      await submitEnquiry({
+        data: {
+          type: "contact",
+          name,
+          phone,
+          email,
+          budget,
+          buyer_type: buyer,
+          visit_date: visit,
+          message,
+        },
+      });
+    } catch (err) {
+      console.error("Failed to submit contact enquiry to D1:", err);
+    }
     setSent(true);
   };
   return (

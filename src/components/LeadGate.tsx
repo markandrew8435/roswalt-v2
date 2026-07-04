@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { submitEnquiry } from "@/lib/submit-enquiry";
 
 const STORAGE_KEY = "ryla_lead_v1";
 const POPUP_INTERVAL_MS = 300000; // 5 minutes
@@ -72,6 +73,20 @@ export function LeadGate() {
     } catch {
       // ignore storage error if quota full or private mode
     }
+
+    try {
+      await submitEnquiry({
+        data: {
+          type: "lead_gate",
+          name: lead.name,
+          phone: lead.phone,
+          email: lead.email,
+        },
+      });
+    } catch (err) {
+      console.error("Failed to submit lead to D1:", err);
+    }
+
     setSubmitting(false);
     setDone(true);
 
