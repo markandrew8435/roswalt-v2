@@ -2,22 +2,22 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState, useCallback } from "react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { submitEnquiry } from "@/lib/submit-enquiry";
-import Url from "@/assets/";
-import Url from "@/assets/";
-import Url from "@/assets/";
+import exteriorUrl from "@/assets/exterior.jpg";
+import interiorUrl from "@/assets/interior.jpg";
+import interiorLivingUrl from "@/assets/interior-living.jpg";
 import heroTowerUrl from "@/assets/hero-tower.jpg";
-import Url from "@/assets/";
-import Url from "@/assets/";
-import Url from "@/assets/";
-import Url from "@/assets/";
-import Url from "@/assets/";
-import Url from "@/assets/";
-import Url from "@/assets/";
-import Url from "@/assets/";
-import Url from "@/assets/";
-import Url from "@/assets/";
-import Url from "@/assets/";
-import Url from "@/assets/";
+import amenityZenUrl from "@/assets/amenity-zen.jpg";
+import amenitySkyUrl from "@/assets/amenity-sky.jpg";
+import yogaUrl from "@/assets/yoga.jpg";
+import juicebarUrl from "@/assets/juicebar.jpg";
+import gymUrl from "@/assets/gym.jpg";
+import loungeUrl from "@/assets/lounge.jpg";
+import partyUrl from "@/assets/party.jpg";
+import kidsUrl from "@/assets/kids.jpg";
+import brochureUrl from "@/assets/brochure.pdf";
+import floorplan1068Url from "@/assets/floorplan-1068.jpg";
+import floorplan1245Url from "@/assets/floorplan-1245.jpg";
+import floorplanTypicalUrl from "@/assets/floorplan-typical.jpg";
 
 const PHONE = "+918879396591";
 const PHONE_DISPLAY = "+91 88793 96591";
@@ -121,7 +121,7 @@ const ldJson = {
       name: "Roswalt Ryla",
       description: META_DESC,
       brand: { "@type": "Organization", name: "Roswalt Realty" },
-      image: [Url, Url, Url],
+      image: [exteriorUrl, heroTowerUrl, interiorLivingUrl],
       address: {
         "@type": "PostalAddress",
         addressLocality: "Bandra West",
@@ -190,16 +190,16 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: META_TITLE },
       { property: "og:description", content: META_DESC },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: Url },
+      { property: "og:image", content: heroTowerUrl },
       { property: "og:url", content: SITE_URL },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: META_TITLE },
       { name: "twitter:description", content: META_DESC },
-      { name: "twitter:image", content: Url },
+      { name: "twitter:image", content: heroTowerUrl },
     ],
     links: [
       { rel: "canonical", href: SITE_URL },
-      { rel: "preload", as: "image", href: Url, fetchpriority: "high" } as never,
+      { rel: "preload", as: "image", href: heroTowerUrl, fetchpriority: "high" } as never,
     ],
     scripts: [{ type: "application/ld+json", children: JSON.stringify(ldJson) }],
   }),
@@ -365,7 +365,7 @@ export function Nav() {
             </Link>
           ))}
           <a
-            href={Url}
+            href={brochureUrl}
             data-brochure
             target="_blank"
             rel="noopener"
@@ -438,7 +438,7 @@ export function Hero() {
               Book Private Site Visit
             </a>
             <a
-              href={Url}
+              href={brochureUrl}
               data-brochure
               target="_blank"
               rel="noopener"
@@ -718,8 +718,8 @@ type Home = {
 };
 
 const FLOOR_PLAN_SRC: Record<"I" | "II", string> = {
-  I: Url,
-  II: Url,
+  I: floorplan1068Url,
+  II: floorplan1245Url,
 };
 
 function FloorPlanImage({
@@ -882,7 +882,7 @@ export function Residences() {
                     Request Detailed Layout
                   </button>
                   <a
-                    href={Url}
+                    href={brochureUrl}
                     data-brochure
                     download
                     target="_blank"
@@ -913,7 +913,7 @@ export function Residences() {
                   </DialogTitle>
                 </div>
                 <a
-                  href={Url}
+                  href={brochureUrl}
                   data-brochure
                   download
                   target="_blank"
@@ -954,7 +954,7 @@ export function Residences() {
                     one business day.
                   </p>
                   <a
-                    href={Url}
+                    href={brochureUrl}
                     data-brochure
                     download
                     target="_blank"
@@ -1015,17 +1015,17 @@ export function Amenities() {
       cat: "Wellness",
       items: [
         {
-          img: Url,
+          img: amenityZenUrl,
           title: "Zen Garden",
           desc: "A composed pause in the day — meditative, quiet, distinctly private.",
         },
         {
-          img: Url,
+          img: yogaUrl,
           title: "Sky Yoga Deck",
           desc: "A space above the city, thoughtfully composed for you.",
         },
         {
-          img: Url,
+          img: gymUrl,
           title: "Fitness Centre",
           desc: "A disciplined pursuit, carried with precision and intent.",
         },
@@ -1035,22 +1035,22 @@ export function Amenities() {
       cat: "Lifestyle",
       items: [
         {
-          img: Url,
+          img: loungeUrl,
           title: "Sky Lounge",
           desc: "An elevated outlook, framed with quiet authority.",
         },
         {
-          img: Url,
+          img: partyUrl,
           title: "Party Deck & Sky BBQ",
           desc: "An evening shaped with rhythm, presence and allure.",
         },
         {
-          img: Url,
+          img: amenitySkyUrl,
           title: "Sky BBQ Deck",
           desc: "A rooftop ritual under the city sky — gathering, but never crowded.",
         },
         {
-          img: Url,
+          img: juicebarUrl,
           title: "Juice Bar",
           desc: "A refined ritual of freshness and conscious indulgence.",
         },
@@ -1060,17 +1060,17 @@ export function Amenities() {
       cat: "Family",
       items: [
         {
-          img: Url,
+          img: kidsUrl,
           title: "Kids Play Area",
           desc: "A vibrant space, alive with movement and imagination.",
         },
         {
-          img: Url,
+          img: loungeUrl,
           title: "Indoor Games",
           desc: "A measured corner of the building, set aside for play.",
         },
         {
-          img: Url,
+          img: amenityZenUrl,
           title: "Senior Citizen Area",
           desc: "A serene retreat for unhurried mornings and shared company.",
         },
@@ -1266,20 +1266,20 @@ export function Gallery() {
   type Cat = (typeof cats)[number];
   const imgs: { src: string; alt: string; cat: Exclude<Cat, "All">; span?: string }[] = [
     {
-      src: Url,
+      src: heroTowerUrl,
       alt: "Roswalt Ryla tower exterior at twilight",
       cat: "Exterior",
       span: "lg:col-span-2 lg:row-span-2",
     },
-    { src: Url, alt: "Building facade detail", cat: "Exterior" },
-    { src: Url, alt: "Sea-facing living room interior", cat: "Interiors" },
-    { src: Url, alt: "Refined dining area inside Ryla", cat: "Interiors" },
-    { src: Url, alt: "Sky lounge ledge at sunset", cat: "Amenities" },
-    { src: Url, alt: "Rooftop party deck overlooking the skyline", cat: "Amenities" },
-    { src: Url, alt: "Sky yoga deck at dusk", cat: "Amenities" },
-    { src: Url, alt: "Zen garden contemplative area", cat: "Amenities" },
-    { src: Url, alt: "Sky deck overlooking Bandra West", cat: "Location" },
-    { src: Url, alt: "Kids play area", cat: "Amenities" },
+    { src: exteriorUrl, alt: "Building facade detail", cat: "Exterior" },
+    { src: interiorLivingUrl, alt: "Sea-facing living room interior", cat: "Interiors" },
+    { src: interiorUrl, alt: "Refined dining area inside Ryla", cat: "Interiors" },
+    { src: loungeUrl, alt: "Sky lounge ledge at sunset", cat: "Amenities" },
+    { src: partyUrl, alt: "Rooftop party deck overlooking the skyline", cat: "Amenities" },
+    { src: yogaUrl, alt: "Sky yoga deck at dusk", cat: "Amenities" },
+    { src: amenityZenUrl, alt: "Zen garden contemplative area", cat: "Amenities" },
+    { src: amenitySkyUrl, alt: "Sky deck overlooking Bandra West", cat: "Location" },
+    { src: kidsUrl, alt: "Kids play area", cat: "Amenities" },
   ];
   const [active, setActive] = useState<Cat>("All");
   const visible = imgs.filter((i) => active === "All" || i.cat === active);
@@ -1478,7 +1478,7 @@ export function Price() {
             Book Consultation
           </a>
           <a
-            href={Url}
+            href={brochureUrl}
             data-brochure
             target="_blank"
             rel="noopener"
@@ -1634,7 +1634,7 @@ export function Contact() {
                 private viewing.
               </p>
               <a
-                href={Url}
+                href={brochureUrl}
                 data-brochure
                 target="_blank"
                 rel="noopener"
@@ -1823,7 +1823,7 @@ export function Footer() {
             </li>
             <li>
               <a
-                href={Url}
+                href={brochureUrl}
                 data-brochure
                 target="_blank"
                 rel="noopener"
