@@ -1,5 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
-import { getCfEnv } from "./env-context";
+import { getCfEnv, type D1Database } from "./env-context";
 
 export type EnquiryPayload = {
   type: "lead_gate" | "layout_request" | "contact";
@@ -15,13 +15,45 @@ export type EnquiryPayload = {
   layout_area?: string;
 };
 
+async function resolveD1Database(): Promise<D1Database | undefined> {
+  // 1. Check process.env.DB (Nitro aliases env vars onto process.env per request)
+  if ((process.env as any)?.DB) {
+    return (process.env as any).DB;
+  }
+  // 2. Check globalThis bindings (Cloudflare Workers / Nitro globals)
+  if ((globalThis as any)?.DB) {
+    return (globalThis as any).DB;
+  }
+  if ((globalThis as any)?.env?.DB) {
+    return (globalThis as any).env.DB;
+  }
+  if ((globalThis as any)?.__env__?.DB) {
+    return (globalThis as any).__env__.DB;
+  }
+  // 3. Try AsyncLocalStorage store if set
+  const cfStore = getCfEnv();
+  if (cfStore?.DB) {
+    return cfStore.DB;
+  }
+  // 4. Try reading from cloudflare:workers module
+  try {
+    const { env } = await import("cloudflare:workers");
+    if ((env as any)?.DB) {
+      return (env as any).DB;
+    }
+  } catch {
+    // cloudflare:workers is not available in non-worker environments
+  }
+
+  return undefined;
+}
+
 export const submitEnquiry = createServerFn({ method: "POST" })
   .validator((data: EnquiryPayload) => data)
   .handler(async ({ data }) => {
     const id =
       typeof crypto !== "undefined" && crypto.randomUUID ? crypto.randomUUID() : String(Date.now());
-    const env = getCfEnv();
-    const db = env?.DB;
+    const db = await resolveD1Database();
 
     if (db) {
       try {
@@ -52,7 +84,7 @@ export const submitEnquiry = createServerFn({ method: "POST" })
       }
     } else {
       console.warn(
-        `[D1 DB] Cloudflare D1 binding DB is not attached in local environment. Saved lead record:`,
+        `[D1 DB] Cloudflare D1 binding DB is not attached. Lead record:`,
         data,
       );
     }

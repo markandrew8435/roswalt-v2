@@ -3,6 +3,7 @@
   "name": "roswalt-v2",
   "main": "src/server.ts",
   "compatibility_date": "2024-09-23",
+  "compatibility_flags": ["nodejs_compat"],
   "d1_databases": [
     {
       "binding": "DB",
